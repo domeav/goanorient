@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Club de go de Lorient - tournoi permanent/trophée mobile</title>
+
+  <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+</head>
+<body>
+  <header>
+    Tournois du club de go de Lorient
+    <br/>
+    <a href="index.html">Tournoi permanent</a>
+    <a href="pandacup.html">Trophée mobile</a>
+  </header>
+
+<div id="content">
+
+<h1>Tournoi permanent de Lorient</h1>
+
+<h2>Classement par points</h2>
+<ul>
+    {% for score, names in stats.rankings_by('score') %}
+    <li>{{ score }}: {{ names }}</li>
+    {% endfor %}
+</ul>
+
+<h2>Classement par victoires</h2>
+<ul>
+    {% for score, names in stats.rankings_by('nbwins') %}
+    <li>{{ score }}: {{ names }}</li>
+    {% endfor %}
+</ul>
+
+<h2>Classement par parties jouées</h2>
+<ul>
+    {% for score, names in stats.rankings_by('nbgames') %}
+    <li>{{ score }}: {{ names }}</li>
+    {% endfor %}
+</ul>
+
+<h2>Motivation</h2>
+Faire jouer au go avec le sel d'une partie "officielle" mais avec un cadre flexible.
+
+<h2>Joueurs</h2>
+
+Tous les joueurs de go membres de près ou de loin du club de Lorient peuvent participer au tournoi. Une licence FFG n'est pas obligatoire.
+
+<h2>Fonctionnement</h2>
+
+Les participants sont invités à jouer les uns contre les autres tout au long de l'année (jusqu'à la prochaine AG du club). Un résultat unique est enregistré pour chaque rencontre, qui donne un classement selon le barême suivant :
+<ul>
+<li>partie non jouée : 0</li>
+<li>partie perdue : 1</li>
+<li>partie gagnée : 3</li>
+</ul
+>
+Les parties ne sont donc pas obligatoires, et jouer fait progresser le score quel que soit le résultat.
+
+<h2>Parties</h2>
+La formule d'une partie est libre (tant que les deux joueurs sont d'accord et qu'il s'agit de go !). Les formules suivantes sont recommandées :
+
+<ul>
+    <li>taille de plateau et temps de base
+        <ul>
+            <li>19x19, 30m/joueur</li>
+            <li>13x13, 15m/joueur</li>
+            <li>9x9 : 5min/joueur (sur trois parties en alternant les couleurs)</li>
+        </ul>
+    </li>
+    <li>règles <fran></fran>>
+    <li>le handicap éventuel est librement négocié de façon à équilibrer les chances des deux joueurs (en se basant idéalement sur un handicap -1 officiel selon l'échelle FFG pour le 19x19)</li>
+    <li>si égalité : le komi est de 7,5 et le premier joueur est tiré au hasard (nigiri)</li>
+    <li>byo-yomi après expiration du temps principal : 25pierres/5min ou 20s/coup sur trois périodes (selon les capacités de la pendule)</li>
+</ul>
+
+Les parties peuvent se jouer n'importe où et n'importe quand, y compris sur internet si les joueurs en conviennent.
+
+<h2>Inscriptions et résultats</h2>
+
+Les résultats des parties doivent être communiqués à Dominique Eav (dom.eav@franceimpro.net) par le gagnant, le perdant étant en copie.
+
+L'enregistrement d'un premier résultat vaut inscription : il est donc possible d'intégrer le tournoi en cours d'année.
+
+<h2>Avertissement</h2>
+
+Le détail des règles de ce tournoi pourra être amené à changer en cours d'année. N'hésitez pas à faire des propositions !
+
+<h2>Questions</h2>
+
+<h4>Est-ce que les parties sont comptabilisées à l'échelle FFG ?</h4>
+Une comptabilisation est toujours possible si deux joueurs sont d'accord, mais n'est pas réalisée dans le cadre de ce tournoi. La remontée vers la FFG doit être demandée directement par les joueurs.
+
+<h4>Est-ce que la pendule est vraiment obligatoire ?</h4>
+Tout est possible tant que les adversaires sont d'accord !
+
+<h2>Historique</h2>
+
+{% for session in results %}
+<ul>
+    <li>
+        {{ session['date'] }}
+        <ul>
+            {% for result in session['results'] %}
+            <li>{{ result['w'] }} bat {{ result['l'] }}</li>
+            {% endfor %}
+            </ul>
+    </li>
+</ul>
+{% endfor %}
+
+  </div>
+</body>
+</html>
